@@ -127,6 +127,10 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+STATICFILES_DIRS = [
+    BASE_DIR / "static",  # Add this line if it's not present
+]
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
@@ -171,3 +175,6 @@ ACCOUNT_LOGOUT_REDIRECT_URL = 'login'
 
 
 # ALLOWED_HOSTS = ['27.0.0.1:8000', 'localhost', 'yourdomain.com']
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+    
