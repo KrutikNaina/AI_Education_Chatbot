@@ -17,6 +17,12 @@ logger = logging.getLogger(__name__)
 def home(request):
     return render(request,"home.html")
 
+def chat(request):
+    return render(request,"chatbot.html")
+
+def quiz(request):
+    return render(request,"quiz.html")
+
 def login(request):
 	return render(request,"login.html")
 

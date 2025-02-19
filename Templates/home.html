@@ -1,11 +1,233 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>🎓Learnify Chatbot</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <!-- css start -->
+    <link rel="stylesheet" type="text/css" href="{% static '/css/home.css' %}">
+
+    <script type="text/javascript" src="{% static 'js/timeout.js' %}"></script>
+
+
+
+    <style>
+        a {
+            text-decoration: none;
+            color: #FFFFFF;
+            display: inline-block;
+        }
+
+        .video {
+            display: flex;
+            margin-top: 2.5rem;
+            justify-content: center;
+        }
+
+        .video-style {
+            border-radius: 0.5rem;
+            width: 50%;
+            border: 1px solid #c2410c;
+            box-shadow: 0 1px 2px 0 rgba(251, 146, 60, 0.5);
+            margin: 1rem 0.5rem;
+        }
+
+        footer {
+            color: #FFFFFF;
+            size: 20px;
+            height: 40px;
+            margin-top: 15px;
+        }
+    </style>
 </head>
+
 <body>
-    <h1><center>Mail send</center></h1>
+    {% include 'header.html' %}
+
+    <div class="container">
+        <h1 class="MainText">
+            Your Path to Knowledge Starts
+            <span class="MainTextSpan">with <br><span style="font-size: 5vw;"> Learnify </span></span>
+        </h1>
+        <p class="MainTextPara">
+            Learnify is your AI-powered learning companion, providing personalized support and resources tailored to
+            your educational journey. Unlock your potential with instant, interactive assistance every step of the way.
+        </p>
+        <div class="MainButton">
+            <a href="/chat/" style="text-decoration: none;
+            color: #FFFFFF;
+            display: inline-block;" class="button-primary">Start for free</a>
+            <a href="#" style="text-decoration: none;
+            color: #FFFFFF;
+            display: inline-block;" class="button-secondary">Documentation</a>
+        </div>
+
+        <div class="video">
+            <video autoplay loop muted class="video-style">
+                <source src="/media/images/video1.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+            </video>
+            <video autoplay loop muted class="video-style">
+                <source src="/media/images/video2.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        <div class="feature-section">
+            <div class="text-center">
+                <span class="feature-label">Feature</span>
+                <h2 class="feature-title">
+                    Easily build
+                    <span class="highlighted-text">your code</span>
+                </h2>
+            </div>
+
+            <div class="feature">
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <!-- Replace with actual icon -->
+                        &#9881;
+                    </div>
+                    <div>
+                        <h5 class="feature-heading">Personalized Learning</h5>
+                        <p class="feature-description">
+                            Tailored study plans based on your needs.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        &#9865;
+                    </div>
+                    <div>
+                        <h5 class="feature-heading">24/7 AI Tutor</h5>
+                        <p class="feature-description">
+                            Get instant explanations, summaries, and guidance anytime.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        &#9881;
+                    </div>
+                    <div>
+                        <h5 class="feature-heading">Interactive Quizzes</h5>
+                        <p class="feature-description">
+                            Test your knowledge with AI-generated quizzes.
+                        </p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+
+                        <!-- Replace with actual icon -->
+                        &#9881;
+                    </div>
+                    <div>
+                        <h5 class="feature-heading">Doubt Solver</h5>
+                        <p class="feature-description">
+                            Ask any question and get AI-powered answers. </p>
+                    </div>
+                </div>
+
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        &#9881;
+                    </div>
+                    <div>
+                        <h5 class="feature-heading">Subject-Specific Help</h5>
+                        <p class="feature-description">
+                            Covers Math, Science, History, Coding, and more.</p>
+                    </div>
+                </div>
+
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        &#9881;
+                    </div>
+                    <div>
+                        <h5 class="feature-heading">AI-Powered Notes</h5>
+                        <p class="feature-description">
+                            Get AI-generated summaries for quick revision.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="testimonials">
+            <h2>What People are Saying</h2>
+            <div class="testimonials-container">
+                <div class="testimonial">
+                    <div class="testimonial-box">
+                        <p>I finally understand Math concepts easily! This AI tutor is a game-changer.</p>
+                        <div class="testimonial-user">
+                            <img src="/media/images/img_avatar.png" alt="User 1">
+                            <div>
+                                <h6>Aisha</h6>
+                                <span>High School Student</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial">
+                    <div class="testimonial-box">
+                        <p>As a teacher, I use this chatbot to help my students clarify doubts instantly!</p>
+                        <div class="testimonial-user">
+                            <img src="/media/images/img_avatar1.png" alt="User 2">
+                            <div>
+                                <h6>Mrs. Sharma</h6>
+                                <span>Math Teacher</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial">
+                    <div class="testimonial-box">
+                        <p>The AI chatbot helps me with last-minute revisions. The summaries are super useful before
+                            exams!</p>
+                        <div class="testimonial-user">
+                            <img src="/media/images/img_avatar.png" alt="User 3">
+                            <div>
+                                <h6>Rahul</h6>
+                                <span>College Student</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial">
+                    <div class="testimonial-box">
+                        <p>Perfect for homework help! It explains tough concepts in a simple way.</p>
+                        <div class="testimonial-user">
+                            <img src="/media/images/img_avatar1.png" alt="User 3">
+                            <div>
+                                <h6>Lucas</h6>
+                                <span>Middle School Student</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <footer class="text-center">
+        <p>© 2025 <b>Learnify</b> All rights reserved. 🚀 Powered by AI & Machine Learning.</p>
+    </footer>
+
 </body>
+
 </html>

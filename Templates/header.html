@@ -14,6 +14,10 @@
     <script type="text/javascript" src="{% static 'js/timeout.js' %}"></script>
 
     <style>
+        body {
+            background-color: #111111;
+        }
+
         .btn1 {
             margin-top: 10px;
             width: 150px;
@@ -35,7 +39,7 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" href="/home/" data-toggle="tooltip" data-placement="bottom"
-                    title="Site-Name!">Pest-Control</a>
+                    title="Site-Name!">Learnify Chatbot</a>
             </div>
 
             <div class="collapse navbar-collapse" id="tour">
@@ -45,11 +49,12 @@
                     <li><a href="#About" data-toggle="tooltip" data-placement="bottom" title="About!">About</a></li>
                     <li><a href="#Terstimonial" data-toggle="tooltip" data-placement="bottom"
                             title="Contact!">Terstimonial</a></li>
-                    <li><a href="#Contact" data-toggle="tooltip" data-placement="bottom" title="Contact!">Contact</a></li>
+                    <li><a href="#Contact" data-toggle="tooltip" data-placement="bottom" title="Contact!">Contact</a>
+                    </li>
                 </ul>
 
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a data-toggle="modal" data-target="#myModal">Welcome {{ user_name }}</a></li>
+                    <li><a data-toggle="modal" style="cursor: pointer;" data-target="#myModal">Welcome {{ user_name }}</a></li>
                     <li>
                         <button class="btn1 btn-warning" data-toggle="tooltip" data-placement="bottom" title="Shopping!"
                             style="margin-right: 20px;">
@@ -86,12 +91,13 @@
             </div>
         </div>
     </div>
+    
 
     <script>
         function delayedLogout() {
-            setTimeout(function() {
+            setTimeout(function () {
                 window.location.href = "{% url 'logout' %}";
-            }, 2000); // 2-second delay
+            }, 1000); // 2-second delay
         }
     </script>
 </body>
