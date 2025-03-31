@@ -6,7 +6,7 @@ const fileInput = promptForm.querySelector("#file-input");
 const fileUploadWrapper = promptForm.querySelector(".file-upload-wrapper");
 const themeToggleBtn = document.querySelector("#theme-toggle-btn");
 // API Setup
-const API_KEY = "AIzaSyADFhZOwBFWmsAm-8jVeSuiGNGGn0lOokg";
+const API_KEY = "Your_API_Key";
 const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`;
 let controller, typingInterval;
 const chatHistory = [];
@@ -41,29 +41,52 @@ const typingEffect = (text, textElement, botMsgDiv) => {
     }
   }, 40); // 40 ms delay
 };
+
 // Make the API call and generate the bot's response
 const generateResponse = async (botMsgDiv) => {
   const textElement = botMsgDiv.querySelector(".message-text");
   controller = new AbortController();
-  // Add user message and file data to the chat history
+
   chatHistory.push({
     role: "user",
-    parts: [{ text: userData.message }, ...(userData.file.data ? [{ inline_data: (({ fileName, isImage, ...rest }) => rest)(userData.file) }] : [])],
+    parts: [{ text: userData.message }],
   });
+
   try {
-    // Send the chat history to the API to get a response
+    // Send request to Gemini API
     const response = await fetch(API_URL, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ contents: chatHistory }),
+      body: JSON.stringify({
+        system_instruction: {
+          role: "system",
+          parts: [
+            {
+              text: "For every user query, provide a response using:\n\n" +
+                "1️⃣ A **relevant Sanskrit shloka** from the Bhagavad Gita.\n" +
+                "2️⃣ **Transliteration** of the shloka in Romanized Sanskrit.\n" +
+                "3️⃣ **Meaning & Solution**: Explain the meaning of the shloka and how it applies to solving the user's problem.\n\n" +
+                "⚠️ Make sure the response strictly follows this format:\n\n" +
+                "📜 **Sanskrit Shloka:**\n_[Sanskrit text here]_\n\n" +
+                "🔤 **Transliteration:**\n_[Romanized Sanskrit]_\n\n" +
+                "💬 **Meaning & Solution:**\n_Explanation of how the shloka helps solve the user's issue._\n\n" +
+                "Encourage self-reflection and action based on **Karma Yoga, Bhakti Yoga, or Jnana Yoga**, depending on the user's concern."
+            }
+          ]
+        },
+        contents: chatHistory
+      }),
       signal: controller.signal,
     });
+
     const data = await response.json();
     if (!response.ok) throw new Error(data.error.message);
-    // Process the response text and display with typing effect
-    const responseText = data.candidates[0].content.parts[0].text.replace(/\*\*([^*]+)\*\*/g, "$1").trim();
+
+    // Process response and display typing effect
+    const responseText = data.candidates[0].content.parts[0].text.trim();
     typingEffect(responseText, textElement, botMsgDiv);
     chatHistory.push({ role: "model", parts: [{ text: responseText }] });
+
   } catch (error) {
     textElement.textContent = error.name === "AbortError" ? "Response generation stopped." : error.message;
     textElement.style.color = "#d62939";
@@ -74,6 +97,7 @@ const generateResponse = async (botMsgDiv) => {
     userData.file = {};
   }
 };
+
 // Handle the form submission
 const handleFormSubmit = (e) => {
   e.preventDefault();
@@ -94,7 +118,7 @@ const handleFormSubmit = (e) => {
   scrollToBottom();
   setTimeout(() => {
     // Generate bot message HTML and add in the chat container
-    const botMsgHTML = `<img class="avatar" src="gemini.svg" /> <p class="message-text">Just a sec...</p>`;
+    const botMsgHTML = `<img class="avatar" src="../media/images/bot.png" /> <p class="message-text">Just a sec...</p>`;
     const botMsgDiv = createMessageElement(botMsgHTML, "bot-message", "loading");
     chatsContainer.appendChild(botMsgDiv);
     scrollToBottom();

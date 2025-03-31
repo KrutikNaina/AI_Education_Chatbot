@@ -9,13 +9,16 @@ from django.http import JsonResponse
 from django.http import HttpResponseRedirect
 from django.contrib.auth.hashers import make_password, check_password
 import logging
-
+from django.shortcuts import get_object_or_404
+from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth.models import User
+import json
 
 # Set up a logger
 logger = logging.getLogger(__name__)
 
-def home(request):
-    return render(request,"home.html")
+def custom_404(request, exception):
+    return render(request, '404.html', status=404)
 
 def chat(request):
     return render(request,"chatbot.html")
