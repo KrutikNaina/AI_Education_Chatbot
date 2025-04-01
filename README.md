@@ -35,8 +35,8 @@ Ensure you have the following installed:
 This project is licensed under the MIT License.  
 
 ## 📬 Contact  
-For any issues or suggestions, open an issue or contact
-📧 Email: [krutiknaina29@gmail.com](mailto:krutiknaina29@gmail.com).
+For any issues or suggestions, open an issue or contact<br/>
+📧 Email: [krutiknaina29@gmail.com](mailto:krutiknaina29@gmail.com).<br/>
 🔗 LinkedIn: [Krutik Naina](https://www.linkedin.com/in/krutik-naina/)
 ---
 
