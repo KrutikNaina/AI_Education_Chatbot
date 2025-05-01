@@ -1,6 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from db.models import Register
+from django.urls import reverse
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.core.mail import send_mail
@@ -9,16 +10,17 @@ from django.http import JsonResponse
 from django.http import HttpResponseRedirect
 from django.contrib.auth.hashers import make_password, check_password
 import logging
-from django.shortcuts import get_object_or_404
-from django.views.decorators.csrf import csrf_exempt
-from django.contrib.auth.models import User
-import json
+
 
 # Set up a logger
 logger = logging.getLogger(__name__)
 
+def home(request):
+    return render(request,"home.html")
+
 def custom_404(request, exception):
     return render(request, '404.html', status=404)
+
 
 def chat(request):
     return render(request,"chatbot.html")
@@ -54,7 +56,7 @@ def loginafter(request):
             request.session['user_id'] = register.id  # Store user ID in session
             request.session['user_name'] = register.name  # Store user name
             messages.success(request, "Login successful!")  # Success message
-            return redirect('/dashboard/')  # Redirect to dashboard after login
+            return redirect(reverse('dashboard'))
         else:
             return render(request, 'login.html', {'error': 'Invalid email or password'})
 
@@ -139,4 +141,5 @@ def dashboard(request):
 def logout(request):
     request.session.flush()  # Clear session
     return redirect('/login/')  # Redirect to login after logout
+
 

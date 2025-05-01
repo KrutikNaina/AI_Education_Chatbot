@@ -10,3 +10,10 @@ class Register (models.Model):
 	
 	def __str__(self):
 		return self.email
+
+class Contact(models.Model):
+    cname = models.CharField(max_length=30)
+    cnumber = models.CharField(max_length=30)
+    cemail = models.CharField(max_length=30)
+    cservice = models.CharField(max_length=30)
+    ccomment = models.CharField(max_length=100)
